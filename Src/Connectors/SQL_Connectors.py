@@ -13,18 +13,19 @@ def store_in_DB(row_insert, table_name):
         val = row_insert
         cnxn.execute(sql, val)
     elif table_name == 'Stmt_Info':
-        sql = """INSERT INTO [dbo].[Stmt_Details]
-           ([Date]
-           ,[Paid_to]
-           ,[Description]
-           ,[Balance_amt])
+        sql = """INSERT INTO [dbo].[Stmt_Info]
+           ([dated_on]
+           ,[Stmt_desc]
+           ,[paid_to]
+           ,[balance_amt]
+           ,[expenditure])
      VALUES
            (?
            ,?
            ,?
+           ,?
            ,?)"""
-        #print("INserting now " + (row_insert.date, row_insert.paid_to, row_insert.desc, row_insert.balance))
-        cnxn.execute(sql,(row_insert.date, row_insert.paid_to, row_insert.desc, row_insert.balance) )
+        cnxn.execute(sql,(row_insert.date, row_insert.paid_to, row_insert.desc, row_insert.balance, row_insert.exp))
     cnxn.commit()
 
 def ext_from_DB(query_action):
